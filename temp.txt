@@ -1,0 +1,28 @@
+import requests
+
+headers = {
+    'authority': 'store.tildacdn.com',
+    'accept': '*/*',
+    'accept-language': 'ru,ru-RU;q=0.9,en-US;q=0.8,en;q=0.7',
+    'origin': 'https://happybagspb.ru',
+    'referer': 'https://happybagspb.ru/',
+    'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Linux"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'cross-site',
+    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+}
+
+params = {
+    'storepartuid': '464249294850',
+    'recid': '285042057',
+    'c': '1668796177968',
+    'getparts': 'true',
+    'getoptions': 'true',
+    'slice': '1',
+    'size': '36',
+}
+
+response = requests.get('https://store.tildacdn.com/api/getproductslist/', params=params, headers=headers)
