@@ -38,17 +38,11 @@ def parsing(slice=1):
    return response.json()
 
 def perebor(products):
-   prod_dict = {}
-   for product in products:
-      gallery = product.get('gallery').split('/')[-1]
-      if gallery == '_.jpg"}]':
-         title = product.get('title')
-         url = product.get('url')
-         id = product.get('uid')
-
-         prod_dict[id] = (title, url)
-   # print(prod_dict)
-   return prod_dict
+   return {
+      product.get('uid'): (product.get('title'), product.get('url'))    # dict(id:[title, url])
+      for product in products 
+      if product.get('gallery').split('/')[-1] == '_.jpg"}]'
+   }
 
 def products_dict():
    slice = 1
@@ -61,7 +55,7 @@ def products_dict():
          nextslice = 0
 
       products = response.get('products')
-      prod_dict = prod_dict | perebor(products)
+      prod_dict |= perebor(products)
 
       print(f'nextslice = {nextslice}')
       slice = nextslice
@@ -70,12 +64,12 @@ def products_dict():
    return prod_dict
 
 def tojson():
-   with open('shop.json', 'w') as file:
+   with open('shop.json', 'w', encoding='utf-8') as file:
       json.dump(products_dict(), file, indent=4, ensure_ascii=False)
 
 
 if __name__ == "__main__":
-   # tojson()
+   #tojson()
    print("Hello world!")
 else:
    print("File one executed when imported")

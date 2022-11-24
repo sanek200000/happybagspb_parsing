@@ -5,15 +5,15 @@ import json
 
 def google_image_downloader(r_dir, k_word, num):
     filters = dict(
-        type='photo',
+        type = 'photo',
         # license='noncommercial',
     )
     crawler = GoogleImageCrawler(storage={'root_dir': f'./img/{r_dir}'})
     crawler.crawl(
-        keyword=k_word,
-        max_num=num,
-        overwrite=True,
-        filters=filters,
+        keyword = k_word,
+        max_num = num,
+        overwrite = True,
+        filters = filters,
     )
     pass
 
@@ -40,16 +40,16 @@ def google_main():
         url = src[key][1]
 
         print('\n', uid, item, url, sep='\n')
-        google_image_downloader(r_dir=uid, k_word=item, num=10)
-        make_readme(uid=uid, item=item, url=url)
+        google_image_downloader(uid, item, 10)
+        make_readme(uid, item, url)
 
-        tmp += 1
+        #tmp += 1
         if tmp == 2:
             break
 
 
 if __name__ == "__main__":
-    google_main()
+    #google_main()
     print("Hello world!")
 else:
     print("File one executed when imported")
