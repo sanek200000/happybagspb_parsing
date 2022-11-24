@@ -1,4 +1,4 @@
-from time import sleep
+#from time import sleep
 from icrawler.builtin import GoogleImageCrawler
 import json
 
@@ -18,7 +18,7 @@ def google_image_downloader(r_dir, k_word, num):
     pass
 
 
-def read_json():
+def read_shopjson():
     with open('shop.json', encoding='utf-8') as file:
         src = json.load(file)
     return src
@@ -30,25 +30,26 @@ def make_readme(uid, item, url):
     pass
 
 
-def main():
-    src = read_json()
+def google_main():
+    src = read_shopjson()
 
     tmp = 0
-    for key, val in src.items():
+    for key in src:
         uid = key
-        item = val[0]
-        url = val[1]
+        item = src[key][0]
+        url = src[key][1]
 
+        print('\n', uid, item, url, sep='\n')
         google_image_downloader(r_dir=uid, k_word=item, num=10)
         make_readme(uid=uid, item=item, url=url)
 
-        #tmp += 1
+        tmp += 1
         if tmp == 2:
             break
 
 
 if __name__ == "__main__":
-    main()
-    pass
+    google_main()
+    print("Hello world!")
 else:
     print("File one executed when imported")

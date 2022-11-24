@@ -63,8 +63,6 @@ def products_dict():
       products = response.get('products')
       prod_dict = prod_dict | perebor(products)
 
-      # slice = nextslice
-      
       print(f'nextslice = {nextslice}')
       slice = nextslice
 
@@ -78,6 +76,6 @@ def tojson():
 
 if __name__ == "__main__":
    # tojson()
-   print("Hello world! ")
+   print("Hello world!")
 else:
    print("File one executed when imported")
